@@ -15,7 +15,7 @@ import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/reducers';
-import { setUser } from './action/action';
+import { setUser, clearUser } from './action/action';
 
 // creating a global state for user so that it can be access anywhere
 
@@ -29,6 +29,9 @@ class Root extends React.Component {
         this.props.setUser(user);
         this.props.history.push("/");
         // to use history property outside of route we use HOF
+      } else {
+        this.props.history.push("/login");
+        clearUser()
       }
     });
   }
@@ -49,7 +52,7 @@ const mapStateFromProps = state => ({
   isLoading: state.user.isLoading
 })
 
-const RootWithAuth = withRouter(connect(mapStateFromProps, {setUser}) (Root));
+const RootWithAuth = withRouter(connect(mapStateFromProps, {setUser, clearUser}) (Root));
 
 ReactDOM.render(
   <Provider store={store}>
