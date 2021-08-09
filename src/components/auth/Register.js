@@ -47,7 +47,6 @@ class Register extends React.Component {
 
   isFormEmpty = ({ username, email, password, confirmpassword }) => {
     return !username.length || !email.length || !password.length || !confirmpassword.length;
-    // if the length is 0 we return the function true indicating that the user have not filled up the form
   }
 
   isPasswordValid = ({ password, confirmpassword }) => {
@@ -60,7 +59,7 @@ class Register extends React.Component {
     }
   }
 
-  // help to display error in the form
+  // display error in the form
   displayErrors = errors => errors.map((error, i) =>
     <p key={i}>
       {error.message}
